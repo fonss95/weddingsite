@@ -17,23 +17,9 @@ import { CountdownComponent } from '../countdown/countdown.component';
     <section class="welcome">
       <h1>¡Bienvenidos a nuestra boda!</h1>
       <div class="welcome-content">
-        <p>¡Que sí! Que nos casamos!!!</p>
         <p>
-          ¡Estamos super felices! Nos sentimos en las nubes y queremos compartir
-          contigo todo nuestro amor. Por eso estamos preparando una boda que
-          hará historia y en la que te lo pasarás genial.
-        </p>
-
-        <p>
-          Mientras llega el gran día hemos creado esta web con un montón de
-          secciones para que estés al día de todo y para compartir nuestra
-          historia de amor.
-        </p>
-
-        <p>
-          Una cosa importante, en la sección asistencia puedes confirmar si vas
-          a la boda o no. Confírmanos lo antes posible por favor, que así
-          organizarlo todo nos será mucho más fácil.
+          Bienvenidos! Estamos deseando compartir con vosotros este dia que
+          esperamos sea muy especial.
         </p>
 
         <p>¡Te esperamos!</p>
@@ -41,10 +27,6 @@ import { CountdownComponent } from '../countdown/countdown.component';
     </section>
 
     <app-countdown />
-
-    <section class="footer-section">
-      <img src="footer.jpg" alt="footer" />
-    </section>
   `,
   styles: `
     .image {
@@ -83,7 +65,7 @@ import { CountdownComponent } from '../countdown/countdown.component';
     }
 
     .welcome {
-      height: 400px;
+      height: 200px;
       display: flex;
       margin: 0 auto;
       justify-content: center;
@@ -93,26 +75,16 @@ import { CountdownComponent } from '../countdown/countdown.component';
       background-color: var(--background-color);
       width: 70%;
 
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary-text-color);
+      }
+
       .welcome-content {
         display: flex;
         flex-direction: column;
         align-items: center;
-      }
-    }
-
-    .footer-section {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      max-height: 400px;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: grayscale(100%);
-        opacity: 0.5;
-        margin-top: -200px;
       }
     }
   `,

@@ -10,6 +10,13 @@ import { trigger, transition, style, animate } from '@angular/animations';
   template: `
     <section class="rsvp-container">
       <h1>Confirma tu asistencia</h1>
+      <div class="intro-text">
+        <p>
+          Hemos preparado este formulario para que nos ayudéis con la
+          organización del día, y si tenéis alguna duda, podéis escribirnos a
+          cualquiera de nosotros sin problema.
+        </p>
+      </div>
       <form class="rsvp-form" (submit)="onSubmit($event)">
         <div class="form-group" [@fadeSlide]="0">
           <label for="name">Nombre y apellidos</label>
@@ -24,25 +31,21 @@ import { trigger, transition, style, animate } from '@angular/animations';
 
         <div class="form-group" [@fadeSlide]="1">
           <label>¿Vas a venir a la boda?</label>
-          <div class="radio-group">
-            <label>
-              <input
-                type="radio"
-                name="attending"
-                [(ngModel)]="formData.attending"
-                [value]="true"
-              />
-              Sí
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="attending"
-                [(ngModel)]="formData.attending"
-                [value]="false"
-              />
-              No
-            </label>
+          <div class="button-group">
+            <button
+              type="button"
+              [class.active]="formData.attending === true"
+              (click)="formData.attending = true"
+            >
+              ¡Sí, allí estaré!
+            </button>
+            <button
+              type="button"
+              [class.active]="formData.attending === false"
+              (click)="formData.attending = false"
+            >
+              No podré asistir
+            </button>
           </div>
         </div>
 
@@ -58,36 +61,35 @@ import { trigger, transition, style, animate } from '@angular/animations';
 
         <div *ngIf="formData.attending" class="form-group" [@fadeSlide]="3">
           <label>¿Vas a utilizar el servicio de autobuses?</label>
-          <div class="radio-group">
-            <label>
-              <input
-                type="radio"
-                name="bus"
-                [(ngModel)]="formData.needsBus"
-                [value]="true"
-              />
-              Sí
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="bus"
-                [(ngModel)]="formData.needsBus"
-                [value]="false"
-              />
-              No
-            </label>
+          <div class="button-group">
+            <button
+              type="button"
+              [class.active]="formData.needsBus === true"
+              (click)="formData.needsBus = true"
+            >
+              Sí, lo utilizaré
+            </button>
+            <button
+              type="button"
+              [class.active]="formData.needsBus === false"
+              (click)="formData.needsBus = false"
+            >
+              No, iré por mi cuenta
+            </button>
           </div>
         </div>
 
-        <div class="form-group" [@fadeSlide]="4">
-          <label for="allergies">¿Tienes alguna alergia?</label>
-          <textarea
+        <div *ngIf="formData.attending" class="form-group" [@fadeSlide]="4">
+          <label for="allergies"
+            >¿Tienes tú y/o tu acompañante alguna alergia o restricción
+            alimentaria?</label
+          >
+          <input
+            type="text"
             id="allergies"
             [(ngModel)]="formData.allergies"
             name="allergies"
-            rows="3"
-          ></textarea>
+          />
         </div>
 
         <button type="submit" [@fadeSlide]="5">Enviar</button>
@@ -105,6 +107,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
       text-align: center;
       margin-bottom: 2rem;
       color: var(--primary-text-color);
+      font-size: 2.5rem;
     }
 
     .rsvp-form {
@@ -121,7 +124,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 
     label {
       color: var(--primary-text-color);
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
 
     input[type="text"],
@@ -181,6 +184,49 @@ import { trigger, transition, style, animate } from '@angular/animations';
       .radio-group {
         flex-direction: column;
         gap: 1rem;
+      }
+    }
+
+    .intro-text {
+      max-width: 600px;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--primary-text-color);
+      line-height: 1.6;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      justify-content: center;
+    }
+
+    .button-group button {
+      padding: 0.8rem 1.5rem;
+      border: 2px solid var(--primary-text-color);
+      background: transparent;
+      color: var(--primary-text-color);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      font-family: inherit;
+
+      &:hover {
+        background: color-mix(in srgb, var(--primary-text-color) 10%, transparent);
+      }
+
+      &.active {
+        background: var(--primary-text-color);
+        color: var(--secondary-text-color);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .button-group {
+        flex-direction: column;
+        align-items: stretch;
       }
     }
   `,

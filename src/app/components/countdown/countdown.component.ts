@@ -32,7 +32,6 @@ import { CommonModule } from '@angular/common';
       gap: 2rem;
       padding: 2rem;
       background-color: var(--background-color);
-      margin-top: 2rem;
     }
 
     .countdown-item {

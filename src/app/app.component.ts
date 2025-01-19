@@ -4,7 +4,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { RsvpComponent } from './components/rsvp/rsvp.component';
 import { LocationComponent } from './components/location/location.component';
 import { EventsComponent } from './components/events/events.component';
-import { DietaryComponent } from './components/dietary/dietary.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,7 @@ import { DietaryComponent } from './components/dietary/dietary.component';
     RsvpComponent,
     LocationComponent,
     EventsComponent,
-    DietaryComponent,
+    FooterComponent,
   ],
   template: `
     <app-header />
@@ -35,11 +35,8 @@ import { DietaryComponent } from './components/dietary/dietary.component';
       <section id="events">
         <app-events />
       </section>
-
-      <section id="dietary">
-        <app-dietary />
-      </section>
     </main>
+    <app-footer />
   `,
   styles: `
     main {

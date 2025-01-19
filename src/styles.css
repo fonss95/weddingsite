@@ -1,6 +1,6 @@
 :root {
-  --background-color: #7F9C7E;
-  --primary-text-color: #000000;
+  --background-color: #F3E0DA;
+  --primary-text-color: #98394B;
   --secondary-text-color: #ffffff;
 
   --primary-font: "Playwrite IN", serif;
@@ -16,6 +16,16 @@ body {
   font-style: normal;
   margin: 0;
   padding: 0;
+
+  p {
+    font-size: 1.5rem;
+    color: var(--primary-text-color);
+  }
+
+  h4 {
+    font-size: 2rem;
+    color: var(--primary-text-color);
+  }
 }
 
 html {
