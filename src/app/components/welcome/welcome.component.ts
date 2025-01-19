@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CountdownComponent } from '../countdown/countdown.component';
+import { DividerComponent } from '../divider/divider.component';
 
 @Component({
   selector: 'app-welcome',
   standalone: true,
-  imports: [CountdownComponent],
+  imports: [CountdownComponent, DividerComponent],
   template: `
     <section class="image">
       <img src="blanco-y-negro.jpg" alt="Maria & Alfonso" />
@@ -27,6 +28,7 @@ import { CountdownComponent } from '../countdown/countdown.component';
     </section>
 
     <app-countdown />
+    <app-divider />
   `,
   styles: `
     .image {
@@ -37,6 +39,7 @@ import { CountdownComponent } from '../countdown/countdown.component';
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
 
       img {
         margin-top: 600px;
@@ -64,6 +67,7 @@ import { CountdownComponent } from '../countdown/countdown.component';
       }
     }
 
+
     .welcome {
       height: 200px;
       display: flex;
@@ -74,6 +78,7 @@ import { CountdownComponent } from '../countdown/countdown.component';
       padding: 20px;
       background-color: var(--background-color);
       width: 70%;
+      text-align: center;
 
       h1 {
         font-size: 2.5rem;
@@ -87,6 +92,36 @@ import { CountdownComponent } from '../countdown/countdown.component';
         align-items: center;
       }
     }
+
+    @media (max-width: 768px) {
+      .image {
+        max-height: 600px;
+
+        img {
+          margin-top: 0;
+          height: 100vh;
+          object-position: center 35%;
+        }
+
+        .image-text {
+          width: 100%;
+          top: 50%;
+
+          h1 {
+            font-size: 2.5em;
+          }
+
+          h4 {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .welcome {
+        height: 400px;
+      }
+    }
+
   `,
 })
 export class WelcomeComponent {}

@@ -7,6 +7,17 @@ import { trigger, transition, style, animate } from '@angular/animations';
   selector: 'app-rsvp',
   standalone: true,
   imports: [CommonModule, FormsModule],
+  animations: [
+    trigger('fadeSlide', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(10px)' }),
+        animate(
+          '300ms ease',
+          style({ opacity: 1, transform: 'translateY(0)' })
+        ),
+      ]),
+    ]),
+  ],
   template: `
     <section class="rsvp-container">
       <h1>Confirma tu asistencia</h1>
@@ -18,7 +29,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
         </p>
       </div>
       <form class="rsvp-form" (submit)="onSubmit($event)">
-        <div class="form-group" [@fadeSlide]="0">
+        <div class="form-group" [@fadeSlide]>
           <label for="name">Nombre y apellidos</label>
           <input
             type="text"
@@ -29,7 +40,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
           />
         </div>
 
-        <div class="form-group" [@fadeSlide]="1">
+        <div class="form-group" [@fadeSlide]>
           <label>¿Vas a venir a la boda?</label>
           <div class="button-group">
             <button
@@ -49,7 +60,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
           </div>
         </div>
 
-        <div *ngIf="formData.attending" class="form-group" [@fadeSlide]="2">
+        <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
           <label for="companion">Nombre y apellidos de tu acompañante</label>
           <input
             type="text"
@@ -59,7 +70,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
           />
         </div>
 
-        <div *ngIf="formData.attending" class="form-group" [@fadeSlide]="3">
+        <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
           <label>¿Vas a utilizar el servicio de autobuses?</label>
           <div class="button-group">
             <button
@@ -79,7 +90,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
           </div>
         </div>
 
-        <div *ngIf="formData.attending" class="form-group" [@fadeSlide]="4">
+        <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
           <label for="allergies"
             >¿Tienes tú y/o tu acompañante alguna alergia o restricción
             alimentaria?</label
@@ -92,14 +103,14 @@ import { trigger, transition, style, animate } from '@angular/animations';
           />
         </div>
 
-        <button type="submit" [@fadeSlide]="5">Enviar</button>
+        <button type="submit" [@fadeSlide]>Enviar</button>
       </form>
     </section>
   `,
   styles: `
     .rsvp-container {
       width: 100%;
-      max-width: 600px;
+      max-width: 1200px;
       padding: 2rem;
     }
 
@@ -179,11 +190,35 @@ import { trigger, transition, style, animate } from '@angular/animations';
     @media (max-width: 768px) {
       .rsvp-container {
         padding: 1rem;
+        width: 92%;
       }
 
-      .radio-group {
-        flex-direction: column;
-        gap: 1rem;
+      .intro-text {
+        padding: 0 1rem;
+        font-size: 1.2rem;
+      }
+
+      .form-group {
+        width: 100%;
+      }
+
+      input[type="text"],
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .button-group {
+        padding: 0 1rem;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      label {
+        padding: 0 1rem;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
       }
     }
 
@@ -230,23 +265,6 @@ import { trigger, transition, style, animate } from '@angular/animations';
       }
     }
   `,
-  animations: [
-    trigger('fadeSlide', [
-      transition(':enter', [
-        style({
-          opacity: 0,
-          transform: 'translateY(20px)',
-        }),
-        animate(
-          '0.5s {{delay}}s ease',
-          style({
-            opacity: 1,
-            transform: 'translateY(0)',
-          })
-        ),
-      ]),
-    ]),
-  ],
 })
 export class RsvpComponent {
   formData = {

@@ -24,6 +24,17 @@ import { Component } from '@angular/core';
         margin-top: -200px;
       }
     }
+
+    @media (max-width: 768px) {
+      .footer-section {
+        max-height: 200px;
+
+        img {
+          margin-top: -50px;
+          height: 200px;
+        }
+      }
+    }
   `,
 })
 export class FooterComponent {}

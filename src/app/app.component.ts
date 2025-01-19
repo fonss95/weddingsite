@@ -5,6 +5,7 @@ import { RsvpComponent } from './components/rsvp/rsvp.component';
 import { LocationComponent } from './components/location/location.component';
 import { EventsComponent } from './components/events/events.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @Component({
   selector: 'app-root',
@@ -60,6 +61,4 @@ import { FooterComponent } from './components/footer/footer.component';
     }
   `,
 })
-export class AppComponent {
-  title = 'wedding-site';
-}
+export class AppComponent {}
