@@ -41,6 +41,8 @@ import { FooterComponent } from './components/footer/footer.component';
   styles: `
     main {
       scroll-behavior: smooth;
+      width: 100%;
+      overflow-x: hidden;
     }
 
     section {
@@ -48,6 +50,13 @@ import { FooterComponent } from './components/footer/footer.component';
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 0;
+      }
     }
   `,
 })

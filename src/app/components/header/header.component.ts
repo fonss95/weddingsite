@@ -46,7 +46,7 @@ import { Component, HostListener } from '@angular/core';
     }
 
     nav {
-      padding: 1rem 2rem;
+      padding: 1rem;
     }
 
     .nav-container {
@@ -79,6 +79,7 @@ import { Component, HostListener } from '@angular/core';
       padding: 0.5rem 1rem;
       border-radius: 4px;
       position: relative;
+      text-align: center;
     }
 
     .nav-links a:hover {
@@ -106,15 +107,28 @@ import { Component, HostListener } from '@angular/core';
     }
 
     @media (max-width: 768px) {
-      .nav-container {
-        flex-direction: column;
-        gap: 1rem;
+      nav {
+        padding: 0.5rem;
       }
 
       .nav-links {
         flex-direction: column;
-        gap: 1rem;
-        text-align: center;
+        gap: 0.5rem;
+        width: 100%;
+      }
+
+      .nav-links a {
+        width: 100%;
+        font-size: 1.1rem;
+        padding: 0.8rem;
+      }
+
+      .nav-links a.active::after {
+        width: 20%;
+      }
+
+      .nav-links a:hover::after {
+        width: 30%;
       }
     }
   `,
