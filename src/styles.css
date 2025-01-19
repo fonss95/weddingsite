@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --background-color: #7F9C7E;
+  --primary-text-color: #000000;
+  --secondary-text-color: #ffffff;
+
+  --primary-font: "Playwrite IN", serif;
+  --secondary-font: "Belleza", serif;
+  --tertiary-font: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: var(--secondary-font);
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+}

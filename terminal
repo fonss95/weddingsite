@@ -1,0 +1,8 @@
+ng new maria-alfonso-wedding --routing=true --style=scss
+cd maria-alfonso-wedding
+ng generate component home
+ng generate component rsvp
+ng generate component location
+mkdir src/assets/images
+npm install bootstrap
+ng serve
