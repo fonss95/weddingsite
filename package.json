@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:weddingsite": "node dist/weddingsite/server/server.mjs"
+    "deploy": "ng deploy --base-href=https://fonss95.github.io/weddingsite/  "
   },
   "private": true,
   "dependencies": {
