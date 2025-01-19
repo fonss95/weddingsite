@@ -1,20 +1,18 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule],
   template: `
     <header>
       <nav>
         <div class="nav-container">
           <div class="nav-links">
-            <a routerLink="/bienvenidos">¡Bienvenidos!</a>
-            <a routerLink="/confirmar-asistencia">Confirma tu asistencia</a>
-            <a routerLink="/como-llegar">Cómo llegar</a>
-            <a routerLink="/eventos">Eventos</a>
-            <a routerLink="/restricciones-alimentarias"
+            <a (click)="scrollToSection('welcome')">¡Bienvenidos!</a>
+            <a (click)="scrollToSection('rsvp')">Confirma tu asistencia</a>
+            <a (click)="scrollToSection('location')">Cómo llegar</a>
+            <a (click)="scrollToSection('events')">Eventos</a>
+            <a (click)="scrollToSection('dietary')"
               >Restricciones alimentarias</a
             >
           </div>
@@ -28,6 +26,9 @@ import { RouterModule } from '@angular/router';
       color: var(--primary-text-color);
       font-weight: 200;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      top: 0;
+      z-index: 1000;
     }
 
     nav {
@@ -57,9 +58,10 @@ import { RouterModule } from '@angular/router';
 
     .nav-links a {
       text-decoration: none;
-      color: #333;
+      color: var(--primary-text-color);
       font-size: 1rem;
       transition: color 0.3s ease;
+      cursor: pointer;
     }
 
     .nav-links a:hover {
@@ -80,4 +82,11 @@ import { RouterModule } from '@angular/router';
     }
   `,
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+}
