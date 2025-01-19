@@ -43,13 +43,11 @@ import { DietaryComponent } from './components/dietary/dietary.component';
   `,
   styles: `
     main {
-      margin-top: 60px;
       scroll-behavior: smooth;
     }
 
     section {
       min-height: 100vh;
-      padding: 2rem;
       display: flex;
       justify-content: center;
       align-items: center;

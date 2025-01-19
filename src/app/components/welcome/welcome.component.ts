@@ -43,7 +43,7 @@ import { CountdownComponent } from '../countdown/countdown.component';
     <app-countdown />
 
     <section class="footer-section">
-      <img src="footer.png" alt="footer" />
+      <img src="footer.jpg" alt="footer" />
     </section>
   `,
   styles: `
@@ -70,7 +70,7 @@ import { CountdownComponent } from '../countdown/countdown.component';
         flex-direction: column;
         gap: 10px;
         align-items: center;
-        top: 53%;
+        top: 63%;
         left: 50%;
         transform: translate(-50%, -50%);
         color: black;
@@ -97,6 +97,22 @@ import { CountdownComponent } from '../countdown/countdown.component';
         display: flex;
         flex-direction: column;
         align-items: center;
+      }
+    }
+
+    .footer-section {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      max-height: 400px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(100%);
+        opacity: 0.5;
+        margin-top: -200px;
       }
     }
   `,
