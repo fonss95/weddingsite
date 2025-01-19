@@ -144,7 +144,7 @@ import { Component } from '@angular/core';
 
     @media (max-width: 768px) {
       .location-container {
-        padding: 1rem;
+        padding: 0;
       }
 
       h1 {

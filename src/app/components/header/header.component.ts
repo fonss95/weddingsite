@@ -1,13 +1,20 @@
 import { Component, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
+  imports: [CommonModule],
   template: `
     <header>
       <nav>
         <div class="nav-container">
-          <div class="nav-links">
+          <div class="menu-icon" (click)="toggleMenu()">
+            <div class="bar" [class.open]="isMenuOpen"></div>
+            <div class="bar" [class.open]="isMenuOpen"></div>
+            <div class="bar" [class.open]="isMenuOpen"></div>
+          </div>
+          <div class="nav-links" [class.open]="isMenuOpen">
             <a
               (click)="scrollToSection('welcome')"
               [class.active]="activeSection === 'welcome'"
@@ -46,7 +53,7 @@ import { Component, HostListener } from '@angular/core';
     }
 
     nav {
-      padding: 1rem;
+      padding: 2rem;
     }
 
     .nav-container {
@@ -106,21 +113,63 @@ import { Component, HostListener } from '@angular/core';
       width: 60%;
     }
 
+    .menu-icon {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+    }
+
+    .bar {
+      width: 30px;
+      height: 3px;
+      background-color: var(--primary-text-color);
+      transition: all 0.3s ease;
+    }
+
     @media (max-width: 768px) {
-      nav {
-        padding: 0.5rem;
+      .menu-icon {
+        display: flex;
+        position: fixed;
+        top: 10px;
+        right: 10px;
+      }
+
+      .menu-icon .bar.open:nth-child(1) {
+        transform: rotate(45deg) translate(7px, 7px);
+      }
+
+      .menu-icon .bar.open:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-icon .bar.open:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
       }
 
       .nav-links {
-        flex-direction: column;
-        gap: 0.5rem;
+        position: fixed;
+        top: -100vh;
+        left: 0;
         width: 100%;
+        flex-direction: column;
+        gap: 0;
+        background-color: var(--background-color);
+        padding: 1rem 0;
+        transition: top 0.3s ease;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.open {
+        top: 0;
       }
 
       .nav-links a {
         width: 100%;
         font-size: 1.1rem;
-        padding: 0.8rem;
+        padding: 1rem;
       }
 
       .nav-links a.active::after {
@@ -135,11 +184,16 @@ import { Component, HostListener } from '@angular/core';
 })
 export class HeaderComponent {
   activeSection: string = 'welcome';
-  private headerOffset = 60; // Approximate header height
+  isMenuOpen: boolean = false;
+  private headerOffset = 60;
 
   @HostListener('window:scroll', ['$event'])
   onScroll() {
     this.updateActiveSection();
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 
   private updateActiveSection() {
@@ -174,6 +228,7 @@ export class HeaderComponent {
         behavior: 'smooth',
       });
       this.activeSection = sectionId;
+      this.isMenuOpen = false;
     }
   }
 }
