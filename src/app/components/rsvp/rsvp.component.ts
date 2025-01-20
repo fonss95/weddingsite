@@ -19,7 +19,6 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ]),
   ],
   template: `
-    <app-divider></app-divider>
     <section class="rsvp-section">
       <h1>Confirma tu asistencia</h1>
       <div class="intro-text">
@@ -107,7 +106,6 @@ import { trigger, transition, style, animate } from '@angular/animations';
         <button type="submit" [@fadeSlide]>Enviar</button>
       </form>
     </section>
-    <app-divider></app-divider>
   `,
   styles: `
     .rsvp-section {
@@ -118,7 +116,6 @@ import { trigger, transition, style, animate } from '@angular/animations';
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
     }
 
     h1 {

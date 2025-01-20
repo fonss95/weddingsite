@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-location',
   standalone: true,
+  imports: [CommonModule],
   template: `
     <section class="location-container">
       <div class="location-content">
@@ -12,17 +14,11 @@ import { Component } from '@angular/core';
         </div>
 
         <div class="text-content">
-          <h2>Castillo de Batres</h2>
-          <p>
-            Celebraremos nuestra boda en el majestuoso Castillo de Batres, una
-            fortaleza medieval del siglo XV situada en un entorno natural
-            privilegiado a tan solo 35 kilómetros de Madrid.
-          </p>
-          <p>
-            Este castillo, declarado Monumento Histórico-Artístico, combina la
-            belleza histórica con jardines espectaculares, creando el escenario
-            perfecto para nuestro día especial.
-          </p>
+          <h2>
+            Tanto la ceremonia como la posterior celebracion tendran lugar en el
+            Castillo de Batres.
+          </h2>
+
           <div class="address">
             <p>Paseo de la, Av. de la Fuente del Chorro, 1</p>
             <p>28976 Batres, Madrid</p>
@@ -44,13 +40,54 @@ import { Component } from '@angular/core';
               />
             </svg>
           </a>
+
+          <div class="transport-section">
+            <h2>Opciones de transporte</h2>
+
+            <div class="transport-options">
+              <div class="transport-option">
+                <h3>Coche</h3>
+                <p>
+                  Puedes ir en tu propio vehículo, hay un parking para 60 coches
+                  por lo que no habrá problema de aparcamiento.
+                </p>
+              </div>
+
+              <div class="transport-option">
+                <h3>Bus</h3>
+                <p>
+                  Ponemos un servicio de autobús para trasladar a todos los
+                  invitados.
+                </p>
+                <div class="bus-schedule">
+                  <div class="schedule-item">
+                    <span class="time">Ida: 17:00</span>
+                    <span class="location">Salida de Atocha</span>
+                  </div>
+                  <div class="schedule-item">
+                    <span class="time">Vuelta: 1:00*</span>
+                    <span class="location">Destino Atocha</span>
+                    <span class="note">*Si hay suficiente demanda</span>
+                  </div>
+                  <div class="schedule-item">
+                    <span class="time">Vuelta: 4:00</span>
+                    <span class="location">Destino Atocha</span>
+                    <span class="note">Este es fijo</span>
+                  </div>
+                </div>
+                <p class="important-note">
+                  Si vas a coger la opción de bus, es muy importante que nos lo
+                  hagas saber en el formulario RSVP
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   `,
   styles: `
     .location-container {
-      width: 100%;
       max-width: 1200px;
       padding: 2rem;
     }
@@ -138,6 +175,87 @@ import { Component } from '@angular/core';
       }
     }
 
+    .transport-section {
+      margin-top: 4rem;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .transport-section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .transport-options {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .transport-option {
+      flex: 1;
+      min-width: 300px;
+      max-width: 400px;
+      padding: 2rem;
+
+      background-color: color-mix(in srgb, var(--background-color) 85%, white);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .transport-option h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary-text-color);
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+
+    .transport-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--primary-text-color);
+    }
+
+    .bus-schedule {
+      margin: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .schedule-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .time {
+      font-weight: bold;
+      color: var(--primary-text-color);
+    }
+
+    .location {
+      font-size: 0.9rem;
+    }
+
+    .note {
+      font-size: 0.8rem;
+      font-style: italic;
+      opacity: 0.8;
+    }
+
+    .important-note {
+      margin-top: 1.5rem;
+      font-weight: 500;
+      color: var(--primary-text-color);
+      font-style: italic;
+    }
+
     @media (max-width: 768px) {
       .location-container {
         padding: 0;
@@ -149,6 +267,10 @@ import { Component } from '@angular/core';
 
       .text-content {
         padding: 0 1rem;
+      }
+
+      .transport-option {
+        min-width: 100%;
       }
     }
   `,

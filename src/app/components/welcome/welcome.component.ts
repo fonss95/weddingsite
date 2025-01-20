@@ -28,7 +28,6 @@ import { DividerComponent } from '../divider/divider.component';
     </section>
 
     <app-countdown />
-    <app-divider />
   `,
   styles: `
     .image {

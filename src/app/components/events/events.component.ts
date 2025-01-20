@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DividerComponent } from '../divider/divider.component';
 
 @Component({
   selector: 'app-events',
   standalone: true,
-  imports: [CommonModule, DividerComponent],
+  imports: [CommonModule],
   template: `
-    <app-divider></app-divider>
     <section class="events-section">
       <h2>Eventos</h2>
       <img
@@ -16,7 +14,6 @@ import { DividerComponent } from '../divider/divider.component';
         class="events-image"
       />
     </section>
-    <app-divider></app-divider>
   `,
   styles: [
     `

@@ -4,6 +4,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { RsvpComponent } from './components/rsvp/rsvp.component';
 import { LocationComponent } from './components/location/location.component';
 import { EventsComponent } from './components/events/events.component';
+import { DressCodeComponent } from './components/dress-code/dress-code.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
@@ -16,6 +17,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     RsvpComponent,
     LocationComponent,
     EventsComponent,
+    DressCodeComponent,
     FooterComponent,
   ],
   template: `
@@ -25,7 +27,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
         <app-welcome />
       </section>
 
-      <section id="rsvp">
+      <section id="rsvp" class="rsvp-section">
         <app-rsvp />
       </section>
 
@@ -35,6 +37,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
       <section id="events">
         <app-events />
+      </section>
+
+      <section id="dress-code" class="dress-code-section">
+        <app-dress-code />
       </section>
     </main>
     <app-footer />
@@ -52,6 +58,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
       justify-content: center;
       align-items: center;
       width: 100%;
+    }
+
+    .rsvp-section {
+      min-height: 50vh;
+    }
+
+    .dress-code-section {
+      min-height: 50vh;
     }
 
     @media (max-width: 768px) {
