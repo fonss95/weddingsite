@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
       <div class="location-content">
         <h1>Cómo llegar</h1>
         <div class="image-container">
-          <img src="batres-aereo.png" alt="Castillo de Batres aéreo" />
+          <img src="batres.png" alt="Castillo de Batres aéreo" />
         </div>
 
         <div class="text-content">
@@ -44,10 +44,6 @@ import { Component } from '@angular/core';
               />
             </svg>
           </a>
-        </div>
-
-        <div class="image-container second-image">
-          <img src="batres.webp" alt="Castillo de Batres" />
         </div>
       </div>
     </section>

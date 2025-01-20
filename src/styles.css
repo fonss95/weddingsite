@@ -6,6 +6,9 @@
   --primary-font: "Playwrite IN", serif;
   --secondary-font: "Belleza", serif;
   --tertiary-font: "Montserrat", sans-serif;
+
+  --primary-color: #98394B;
+  --primary-filter: invert(62%) sepia(31%) saturate(1069%) hue-rotate(307deg) brightness(70%) contrast(126%);
 }
 
 body {

@@ -6,18 +6,18 @@ import { Component } from '@angular/core';
   template: `
     <div class="divider">
       <div class="line"></div>
-      <div class="ornament">❦</div>
+      <div class="dot"></div>
       <div class="line"></div>
     </div>
   `,
   styles: `
     .divider {
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 1rem;
       padding: 2rem 0;
-      width: 100%;
     }
 
     .line {
@@ -27,10 +27,12 @@ import { Component } from '@angular/core';
       opacity: 0.5;
     }
 
-    .ornament {
-      color: var(--primary-text-color);
-      font-size: 1.5rem;
-      opacity: 0.7;
+    .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: var(--primary-text-color);
+      opacity: 0.5;
     }
 
     @media (max-width: 768px) {
