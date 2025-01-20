@@ -5,7 +5,7 @@ import { DividerComponent } from '../divider/divider.component';
 @Component({
   selector: 'app-welcome',
   standalone: true,
-  imports: [CountdownComponent, DividerComponent],
+  imports: [CountdownComponent],
   template: `
     <section class="image">
       <img src="blanco-y-negro.jpg" alt="Maria & Alfonso" />
