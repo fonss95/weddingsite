@@ -21,7 +21,13 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets/"
               }
             ],
             "styles": ["src/styles.css"],
@@ -29,8 +35,7 @@
             "server": "src/main.server.ts",
             "prerender": false,
             "ssr": false,
-            "baseHref": "/weddingsite/",
-            "outputPath": "dist/wedding-site/browser"
+            "baseHref": "/weddingsite/"
           },
           "configurations": {
             "production": {
@@ -79,7 +84,13 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets/"
               }
             ],
             "styles": ["src/styles.css"],
