@@ -28,6 +28,11 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets/"
+              },
+              {
+                "glob": "CNAME",
+                "input": "public",
+                "output": "/"
               }
             ],
             "styles": ["src/styles.css"],
@@ -35,7 +40,7 @@
             "server": "src/main.server.ts",
             "prerender": false,
             "ssr": false,
-            "baseHref": "/weddingsite/"
+            "baseHref": "https://mariayalfon.es/"
           },
           "configurations": {
             "production": {
@@ -98,7 +103,11 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://mariayalfon.es/",
+            "cname": "mariayalfon.es"
+          }
         }
       }
     }
