@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CountdownComponent } from '../countdown/countdown.component';
-import { DividerComponent } from '../divider/divider.component';
 
 @Component({
   selector: 'app-welcome',

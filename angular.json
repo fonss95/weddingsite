@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/weddingsite/browser",
+            "outputPath": "dist/weddingsite",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -25,13 +25,18 @@
                 "output": "/"
               },
               {
+                "glob": "CNAME",
+                "input": "public",
+                "output": "/"
+              },
+              {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets/"
               }
             ],
             "styles": ["src/styles.css"],
-            "scripts": []
+            "baseHref": "/"
           },
           "configurations": {
             "production": {
@@ -47,7 +52,8 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/"
             },
             "development": {
               "optimization": false,
@@ -96,8 +102,10 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "https://mariayalfon.es/",
-            "cname": "mariayalfon.es"
+            "baseHref": "/",
+            "cname": "mariayalfon.es",
+            "noBuild": false,
+            "noSilent": true
           }
         }
       }
