@@ -301,7 +301,6 @@ export class RsvpComponent {
 
     const headers = {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
     };
 
     const body = {
