@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -30,7 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
           cualquiera de nosotros sin problema.
         </p>
       </div>
-      <form class="rsvp-form" (submit)="onSubmit($event)">
+      <form class="rsvp-form" #rsvpForm="ngForm" (submit)="onSubmit($event)">
         <div class="form-group" [@fadeSlide]>
           <label for="name">Nombre y apellidos</label>
           <input
@@ -39,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
             [(ngModel)]="formData.name"
             name="name"
             required
+            #name="ngModel"
           />
         </div>
 
@@ -49,6 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
               type="button"
               [class.active]="formData.attending === true"
               (click)="formData.attending = true"
+              required
             >
               ¡Sí, allí estaré!
             </button>
@@ -105,7 +107,9 @@ import { HttpClientModule } from '@angular/common/http';
           />
         </div>
 
-        <button type="submit" [@fadeSlide]>Enviar</button>
+        <button type="submit" [@fadeSlide] [disabled]="!isFormValid()">
+          Enviar
+        </button>
       </form>
     </section>
   `,
@@ -270,6 +274,12 @@ import { HttpClientModule } from '@angular/common/http';
         align-items: stretch;
       }
     }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
   `,
 })
 export class RsvpComponent {
@@ -286,36 +296,58 @@ export class RsvpComponent {
   onSubmit(event: Event) {
     event.preventDefault();
 
-    // Replace this URL with your actual API Gateway endpoint
     const apiUrl =
-      'https://3pdljcp63b.execute-api.eu-central-1.amazonaws.com/dev';
+      'https://3pdljcp63b.execute-api.eu-central-1.amazonaws.com/dev/forms';
 
-    this.http
-      .post(apiUrl, {
-        guestId: new Date().getTime().toString(),
-        ...this.formData,
-      })
-      .subscribe({
-        next: (response) => {
-          console.log('RSVP submitted successfully:', response);
-          // You might want to show a success message to the user
-          alert('¡Gracias! Tu respuesta ha sido registrada.');
+    const headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    };
 
-          // Reset the form
-          this.formData = {
-            name: '',
-            attending: null,
-            companion: '',
-            needsBus: null,
-            allergies: '',
-          };
-        },
-        error: (error) => {
-          console.error('Error submitting RSVP:', error);
-          alert(
-            'Lo sentimos, ha habido un error. Por favor, inténtalo de nuevo más tarde.'
-          );
-        },
-      });
+    const body = {
+      TableName: 'wedding_form',
+      Item: {
+        guest_id: { S: new Date().getTime().toString() },
+        guest_name: { S: this.formData.name },
+        guest_attending: { S: this.formData.attending ? 'Yes' : 'No' },
+        guest_companion_name: { S: this.formData.companion },
+        bus_needed: { S: this.formData.needsBus ? 'Yes' : 'No' },
+        allergies: { S: this.formData.allergies },
+      },
+    };
+
+    this.http.post(apiUrl, body, { headers }).subscribe({
+      next: (response) => {
+        console.log('RSVP submitted successfully:', response);
+        // You might want to show a success message to the user
+        alert('¡Gracias! Tu respuesta ha sido registrada.');
+
+        // Reset the form
+        this.formData = {
+          name: '',
+          attending: null,
+          companion: '',
+          needsBus: null,
+          allergies: '',
+        };
+      },
+      error: (error) => {
+        console.error('Error submitting RSVP:', error);
+        alert(
+          'Lo sentimos, ha habido un error. Por favor, inténtalo de nuevo más tarde.'
+        );
+      },
+    });
+  }
+
+  isFormValid(): boolean {
+    return !!(
+      (
+        this.formData.name &&
+        this.formData.attending !== null &&
+        (!this.formData.attending || // If not attending, companion and bus not required
+          this.formData.needsBus !== null)
+      ) // If attending, bus selection required
+    );
   }
 }
