@@ -1,59 +1,92 @@
-# Weddingsite
+# Wedding Website
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.2.
+A modern wedding website built with Angular that allows guests to view wedding details, RSVP, check the dress code, and get location information.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Wedding event details and schedule
+- RSVP system for guests
+- Dress code guidelines
+- Location information and directions
+- Responsive design for mobile and desktop viewing
+
+## Prerequisites
+
+- Node.js (v18 or higher)
+- npm (comes with Node.js)
+- Angular CLI (`npm install -g @angular/cli`)
+
+## Local Development
+
+1. Clone the repository:
+
+```bash
+git clone [repository-url]
+cd weddingsite
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+4. Open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any source files.
 
-## Code scaffolding
+## Development Tools
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Generate new components using Angular CLI:
 
 ```bash
-ng generate --help
+ng generate component components/new-component
 ```
 
-## Building
-
-To build the project run:
+Other useful generation commands:
 
 ```bash
-ng build
+ng generate service services/new-service
+ng generate pipe pipes/new-pipe
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Deployment to GitHub Pages
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+1. Install the gh-pages package if not already installed:
 
 ```bash
-ng test
+npm install -g angular-cli-ghpages
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+2. Create a production build with the correct base href:
 
 ```bash
-ng e2e
+ng build --configuration production --base-href "https://[username].github.io/[repository-name]/"
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+3. Deploy to GitHub Pages:
+
+```bash
+npx angular-cli-ghpages --dir=dist/weddingsite/browser
+```
+
+Note: Make sure to replace `[username]` with your GitHub username and `[repository-name]` with your repository name in the base-href URL.
+
+## Project Structure
+
+- `src/app/components/` - Website components (RSVP, dress code, location, etc.)
+- `public/` - Static assets (images, fonts, etc.)
 
 ## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [Angular Documentation](https://angular.dev)
+- [Angular CLI Documentation](https://angular.dev/tools/cli)
+- [GitHub Pages Documentation](https://pages.github.com/)
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

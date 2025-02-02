@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-rsvp',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HttpClientModule],
   animations: [
     trigger('fadeSlide', [
       transition(':enter', [
@@ -279,9 +281,41 @@ export class RsvpComponent {
     allergies: '',
   };
 
+  constructor(private http: HttpClient) {}
+
   onSubmit(event: Event) {
     event.preventDefault();
-    console.log('Form submitted:', this.formData);
-    // Here you would typically send the data to your backend
+
+    // Replace this URL with your actual API Gateway endpoint
+    const apiUrl =
+      'https://3pdljcp63b.execute-api.eu-central-1.amazonaws.com/dev';
+
+    this.http
+      .post(apiUrl, {
+        guestId: new Date().getTime().toString(),
+        ...this.formData,
+      })
+      .subscribe({
+        next: (response) => {
+          console.log('RSVP submitted successfully:', response);
+          // You might want to show a success message to the user
+          alert('¡Gracias! Tu respuesta ha sido registrada.');
+
+          // Reset the form
+          this.formData = {
+            name: '',
+            attending: null,
+            companion: '',
+            needsBus: null,
+            allergies: '',
+          };
+        },
+        error: (error) => {
+          console.error('Error submitting RSVP:', error);
+          alert(
+            'Lo sentimos, ha habido un error. Por favor, inténtalo de nuevo más tarde.'
+          );
+        },
+      });
   }
 }
