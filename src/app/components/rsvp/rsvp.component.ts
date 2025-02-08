@@ -94,6 +94,26 @@ import { HttpClientModule } from '@angular/common/http';
           </div>
         </div>
 
+        <div *ngIf="formData.needsBus" class="form-group" [@fadeSlide]>
+          <label>¿Que horario de autobus prefieres?</label>
+          <div class="button-group">
+            <button
+              type="button"
+              [class.active]="formData.busSchedule === 'first'"
+              (click)="formData.busSchedule = 'first'"
+            >
+              Me iré despúes de unos bailes (00:00)
+            </button>
+            <button
+              type="button"
+              [class.active]="formData.busSchedule === 'last'"
+              (click)="formData.busSchedule = 'last'"
+            >
+              Me quedaré hasta el final (3:00)
+            </button>
+          </div>
+        </div>
+
         <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
           <label for="allergies"
             >¿Tienes tú y/o tu acompañante alguna alergia o restricción
@@ -288,6 +308,7 @@ export class RsvpComponent {
     attending: null as boolean | null,
     companion: '',
     needsBus: null as boolean | null,
+    busSchedule: null as 'first' | 'last' | null,
     allergies: '',
   };
 
@@ -311,6 +332,7 @@ export class RsvpComponent {
         guest_attending: { S: this.formData.attending ? 'Yes' : 'No' },
         guest_companion_name: { S: this.formData.companion },
         bus_needed: { S: this.formData.needsBus ? 'Yes' : 'No' },
+        bus_schedule: { S: this.formData.busSchedule },
         allergies: { S: this.formData.allergies },
       },
     };
@@ -327,6 +349,7 @@ export class RsvpComponent {
           attending: null,
           companion: '',
           needsBus: null,
+          busSchedule: null,
           allergies: '',
         };
       },
@@ -345,7 +368,8 @@ export class RsvpComponent {
         this.formData.name &&
         this.formData.attending !== null &&
         (!this.formData.attending || // If not attending, companion and bus not required
-          this.formData.needsBus !== null)
+          (this.formData.needsBus !== null &&
+            this.formData.busSchedule !== null))
       ) // If attending, bus selection required
     );
   }

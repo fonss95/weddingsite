@@ -4,10 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production --base-href=https://mariayalfon.es/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng deploy --base-href=https://fonss95.github.io/weddingsite/ --cname=mariayalfon.es"
+    "deploy": "ng deploy --base-href=https://mariayalfon.es/ --cname=mariayalfon.es"
   },
   "private": true,
   "dependencies": {

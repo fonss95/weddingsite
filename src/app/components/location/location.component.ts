@@ -9,16 +9,19 @@ import { CommonModule } from '@angular/common';
     <section class="location-container">
       <div class="location-content">
         <h1>Cómo llegar</h1>
-        <div class="image-container">
-          <img src="batres.png" alt="Castillo de Batres aéreo" />
-        </div>
 
         <div class="text-content">
           <h2>
             Tanto la ceremonia como la posterior celebracion tendran lugar en el
             Castillo de Batres.
           </h2>
+        </div>
 
+        <div class="image-container">
+          <img src="batres.png" alt="Castillo de Batres aéreo" />
+        </div>
+
+        <div class="text-content">
           <div class="address">
             <p>Paseo de la, Av. de la Fuente del Chorro, 1</p>
             <p>28976 Batres, Madrid</p>
@@ -61,16 +64,16 @@ import { CommonModule } from '@angular/common';
                 </p>
                 <div class="bus-schedule">
                   <div class="schedule-item">
-                    <span class="time">Ida: 17:00</span>
+                    <span class="time">Ida: 16:30</span>
                     <span class="location">Salida de Atocha</span>
                   </div>
                   <div class="schedule-item">
-                    <span class="time">Vuelta: 1:00*</span>
+                    <span class="time">Vuelta: 00:00*</span>
                     <span class="location">Destino Atocha</span>
                     <span class="note">*Si hay suficiente demanda</span>
                   </div>
                   <div class="schedule-item">
-                    <span class="time">Vuelta: 4:00</span>
+                    <span class="time">Vuelta: 3:00</span>
                     <span class="location">Destino Atocha</span>
                     <span class="note">Este es fijo</span>
                   </div>
@@ -107,7 +110,7 @@ import { CommonModule } from '@angular/common';
 
     .image-container {
       width: 100%;
-      max-width: 800px;
+      max-width: 700px;
       overflow: hidden;
       border-radius: 8px;
 
@@ -127,7 +130,7 @@ import { CommonModule } from '@angular/common';
 
 
     .text-content {
-      max-width: 600px;
+      max-width: 800px;
       text-align: center;
 
       h2 {
@@ -191,7 +194,7 @@ import { CommonModule } from '@angular/common';
       gap: 2rem;
       justify-content: center;
       flex-wrap: wrap;
-      align-items: center;
+      align-items: start;
     }
 
     .transport-option {

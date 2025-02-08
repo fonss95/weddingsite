@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   template: `
     <section class="footer-section">
-      <img src="footer.jpg" alt="footer" />
+      <img src="footer-v2.jpg" alt="footer" />
     </section>
   `,
   styles: `
@@ -13,7 +13,6 @@ import { Component } from '@angular/core';
       width: 100%;
       height: 100%;
       overflow: hidden;
-      max-height: 400px;
 
       img {
         width: 100%;
@@ -21,18 +20,6 @@ import { Component } from '@angular/core';
         object-fit: cover;
         filter: grayscale(100%);
         opacity: 0.5;
-        margin-top: -200px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .footer-section {
-        max-height: 200px;
-
-        img {
-          margin-top: -50px;
-          height: 200px;
-        }
       }
     }
   `,

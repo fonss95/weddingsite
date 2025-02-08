@@ -18,8 +18,8 @@ import { CountdownComponent } from '../countdown/countdown.component';
       <h1>¡Bienvenidos a nuestra boda!</h1>
       <div class="welcome-content">
         <p>
-          Bienvenidos! Estamos deseando compartir con vosotros este dia que
-          esperamos sea muy especial.
+          Estamos deseando compartir con vosotros este dia que esperamos sea muy
+          especial.
         </p>
 
         <p>¡Te esperamos!</p>
@@ -40,7 +40,7 @@ import { CountdownComponent } from '../countdown/countdown.component';
       position: relative;
 
       img {
-        margin-top: 600px;
+        margin-top: 40vw;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -57,6 +57,7 @@ import { CountdownComponent } from '../countdown/countdown.component';
         left: 50%;
         transform: translate(-50%, -50%);
         color: black;
+        width: 100%;
 
         h1 {
           font-size: 4em;
@@ -91,9 +92,20 @@ import { CountdownComponent } from '../countdown/countdown.component';
       }
     }
 
+    @media only screen and (max-width: 1500px) and (min-width: 768px) {
+      .image {
+        img {
+         margin-top: 30vw;
+        }
+      }
+   }
+
+
+
+
     @media (max-width: 768px) {
       .image {
-        max-height: 600px;
+        max-height: 650px;
 
         img {
           margin-top: 0;

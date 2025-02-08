@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
     <section class="events-section">
       <h2>Eventos</h2>
       <img
-        src="/events.svg"
+        src="/events-v2.png"
         alt="Wedding Events Timeline"
         class="events-image"
       />
