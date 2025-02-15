@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-header',
@@ -18,23 +19,40 @@ import { CommonModule } from '@angular/common';
             <a
               (click)="scrollToSection('welcome')"
               [class.active]="activeSection === 'welcome'"
-              >¡Bienvenidos!</a
+              >{{ currentLang === 'es' ? '¡Bienvenidos!' : 'Welcome!' }}</a
             >
             <a
               (click)="scrollToSection('rsvp')"
               [class.active]="activeSection === 'rsvp'"
-              >Confirma tu asistencia</a
+              >{{ currentLang === 'es' ? 'Confirma tu asistencia' : 'RSVP' }}</a
             >
             <a
               (click)="scrollToSection('location')"
               [class.active]="activeSection === 'location'"
-              >Cómo llegar</a
+              >{{ currentLang === 'es' ? 'Cómo llegar' : 'Location' }}</a
             >
             <a
               (click)="scrollToSection('events')"
               [class.active]="activeSection === 'events'"
-              >Eventos</a
+              >{{ currentLang === 'es' ? 'Eventos' : 'Events' }}</a
             >
+          </div>
+          <div class="language-selector">
+            <button
+              [class.active]="currentLang === 'es'"
+              (click)="switchLanguage('es')"
+              aria-label="Español"
+            >
+              ES
+            </button>
+            <span>|</span>
+            <button
+              [class.active]="currentLang === 'en'"
+              (click)="switchLanguage('en')"
+              aria-label="English"
+            >
+              EN
+            </button>
           </div>
         </div>
       </nav>
@@ -129,12 +147,43 @@ import { CommonModule } from '@angular/common';
       transition: all 0.3s ease;
     }
 
+    .language-selector {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 1002;
+    }
+
+    .language-selector button {
+      background: none;
+      border: none;
+      color: var(--primary-text-color);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.25rem 0.5rem;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .language-selector button.active {
+      opacity: 1;
+      font-weight: bold;
+    }
+
+    .language-selector span {
+      color: var(--primary-text-color);
+      opacity: 0.7;
+    }
+
     @media (max-width: 768px) {
       .menu-icon {
         display: flex;
         position: fixed;
-        top: 10px;
-        right: 10px;
+        top: 1rem;
+        right: 1rem;
       }
 
       .menu-icon .bar.open:nth-child(1) {
@@ -158,6 +207,7 @@ import { CommonModule } from '@angular/common';
         gap: 0;
         background-color: var(--background-color);
         padding: 1rem 0;
+        padding-top: 4rem;
         transition: top 0.3s ease;
         box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
       }
@@ -179,13 +229,33 @@ import { CommonModule } from '@angular/common';
       .nav-links a:hover::after {
         width: 30%;
       }
+
+      .language-selector {
+        position: fixed;
+        top: 1rem;
+        right: 4.5rem;
+        background-color: var(--background-color);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+      }
     }
   `,
 })
 export class HeaderComponent {
   activeSection: string = 'welcome';
   isMenuOpen: boolean = false;
+  currentLang: string = 'es';
   private headerOffset = 60;
+
+  constructor(private languageService: LanguageService) {
+    this.languageService.currentLang$.subscribe((lang) => {
+      this.currentLang = lang;
+    });
+  }
+
+  switchLanguage(lang: string) {
+    this.languageService.setLanguage(lang);
+  }
 
   @HostListener('window:scroll', ['$event'])
   onScroll() {

@@ -4,6 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-rsvp',
@@ -22,17 +23,21 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   template: `
     <section class="rsvp-section">
-      <h1>Confirma tu asistencia</h1>
+      <h1>{{ currentLang === 'es' ? 'Confirma tu asistencia' : 'RSVP' }}</h1>
       <div class="intro-text">
         <p>
-          Hemos preparado este formulario para que nos ayudéis con la
-          organización del día, y si tenéis alguna duda, podéis escribirnos a
-          cualquiera de nosotros sin problema.
+          {{
+            currentLang === 'es'
+              ? 'Hemos preparado este formulario para que nos ayudéis con la organización del día, y si tenéis alguna duda, podéis escribirnos a cualquiera de nosotros sin problema.'
+              : 'We have prepared this form to help us with the organization of the day. If you have any questions, please feel free to contact either of us.'
+          }}
         </p>
       </div>
       <form class="rsvp-form" #rsvpForm="ngForm" (submit)="onSubmit($event)">
         <div class="form-group" [@fadeSlide]>
-          <label for="name">Nombre y apellidos</label>
+          <label for="name">{{
+            currentLang === 'es' ? 'Nombre y apellidos' : 'Full name'
+          }}</label>
           <input
             type="text"
             id="name"
@@ -44,7 +49,11 @@ import { HttpClientModule } from '@angular/common/http';
         </div>
 
         <div class="form-group" [@fadeSlide]>
-          <label>¿Vas a venir a la boda?</label>
+          <label>{{
+            currentLang === 'es'
+              ? '¿Vas a venir a la boda?'
+              : 'Will you attend the wedding?'
+          }}</label>
           <div class="button-group">
             <button
               type="button"
@@ -52,20 +61,32 @@ import { HttpClientModule } from '@angular/common/http';
               (click)="formData.attending = true"
               required
             >
-              ¡Sí, allí estaré!
+              {{
+                currentLang === 'es'
+                  ? '¡Sí, allí estaré!'
+                  : 'Yes, I will be there!'
+              }}
             </button>
             <button
               type="button"
               [class.active]="formData.attending === false"
               (click)="formData.attending = false"
             >
-              No podré asistir
+              {{
+                currentLang === 'es'
+                  ? 'No podré asistir'
+                  : 'Sorry, I cannot attend'
+              }}
             </button>
           </div>
         </div>
 
         <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
-          <label for="companion">Nombre y apellidos de tu acompañante</label>
+          <label for="companion">{{
+            currentLang === 'es'
+              ? 'Nombre y apellidos de tu acompañante'
+              : "Your companion's full name"
+          }}</label>
           <input
             type="text"
             id="companion"
@@ -75,50 +96,73 @@ import { HttpClientModule } from '@angular/common/http';
         </div>
 
         <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
-          <label>¿Vas a utilizar el servicio de autobuses?</label>
+          <label>{{
+            currentLang === 'es'
+              ? '¿Vas a utilizar el servicio de autobuses?'
+              : 'Will you use the bus service?'
+          }}</label>
           <div class="button-group">
             <button
               type="button"
               [class.active]="formData.needsBus === true"
               (click)="formData.needsBus = true"
             >
-              Sí, lo utilizaré
+              {{
+                currentLang === 'es' ? 'Sí, lo utilizaré' : 'Yes, I will use it'
+              }}
             </button>
             <button
               type="button"
               [class.active]="formData.needsBus === false"
               (click)="formData.needsBus = false"
             >
-              No, iré por mi cuenta
+              {{
+                currentLang === 'es'
+                  ? 'No, iré por mi cuenta'
+                  : 'No, I will go on my own'
+              }}
             </button>
           </div>
         </div>
 
         <div *ngIf="formData.needsBus" class="form-group" [@fadeSlide]>
-          <label>¿Que horario de autobus prefieres?</label>
+          <label>{{
+            currentLang === 'es'
+              ? '¿Que horario de autobus prefieres?'
+              : 'Which bus schedule do you prefer?'
+          }}</label>
           <div class="button-group">
             <button
               type="button"
               [class.active]="formData.busSchedule === 'first'"
               (click)="formData.busSchedule = 'first'"
             >
-              Me iré despúes de unos bailes (00:00)
+              {{
+                currentLang === 'es'
+                  ? 'Me iré despúes de unos bailes (00:00)'
+                  : 'I will leave after some dancing (00:00)'
+              }}
             </button>
             <button
               type="button"
               [class.active]="formData.busSchedule === 'last'"
               (click)="formData.busSchedule = 'last'"
             >
-              Me quedaré hasta el final (3:00)
+              {{
+                currentLang === 'es'
+                  ? 'Me quedaré hasta el final (3:00)'
+                  : 'I will stay until the end (3:00)'
+              }}
             </button>
           </div>
         </div>
 
         <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
-          <label for="allergies"
-            >¿Tienes tú y/o tu acompañante alguna alergia o restricción
-            alimentaria?</label
-          >
+          <label for="allergies">{{
+            currentLang === 'es'
+              ? '¿Tienes tú y/o tu acompañante alguna alergia o restricción alimentaria?'
+              : 'Do you or your companion have any food allergies or dietary restrictions?'
+          }}</label>
           <input
             type="text"
             id="allergies"
@@ -128,24 +172,30 @@ import { HttpClientModule } from '@angular/common/http';
         </div>
 
         <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
-          <label for="songRequest"
-            >¿Qué canción que te hace levantarte a bailar y quieres compartir
-            con nosotros?</label
-          >
+          <label for="songRequest">{{
+            currentLang === 'es'
+              ? '¿Qué canción que te hace levantarte a bailar y quieres compartir con nosotros?'
+              : 'What song makes you want to dance and would you like to share with us?'
+          }}</label>
           <input
             type="text"
             id="songRequest"
             [(ngModel)]="formData.songRequest"
             name="songRequest"
-            placeholder="Artista - Nombre de la canción"
+            [placeholder]="
+              currentLang === 'es'
+                ? 'Artista - Nombre de la canción'
+                : 'Artist - Song name'
+            "
           />
         </div>
 
         <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
-          <label for="comments"
-            >Si quieres dejarnos un mensaje para nuestro día especial puedes
-            hacerlo aquí.</label
-          >
+          <label for="comments">{{
+            currentLang === 'es'
+              ? 'Si quieres dejarnos un mensaje para nuestro día especial puedes hacerlo aquí.'
+              : 'If you would like to leave us a message for our special day, you can do so here.'
+          }}</label>
           <textarea
             id="comments"
             [(ngModel)]="formData.comments"
@@ -155,7 +205,7 @@ import { HttpClientModule } from '@angular/common/http';
         </div>
 
         <button type="submit" [@fadeSlide] [disabled]="!isFormValid()">
-          Enviar
+          {{ currentLang === 'es' ? 'Enviar' : 'Submit' }}
         </button>
       </form>
     </section>
@@ -333,18 +383,26 @@ import { HttpClientModule } from '@angular/common/http';
   `,
 })
 export class RsvpComponent {
+  currentLang: string = 'es';
   formData = {
     name: '',
     attending: null as boolean | null,
     companion: '',
     needsBus: null as boolean | null,
-    busSchedule: null as 'first' | 'last' | null,
+    busSchedule: '',
     allergies: '',
     songRequest: '',
     comments: '',
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private languageService: LanguageService
+  ) {
+    this.languageService.currentLang$.subscribe((lang) => {
+      this.currentLang = lang;
+    });
+  }
 
   onSubmit(event: Event) {
     event.preventDefault();
@@ -383,7 +441,7 @@ export class RsvpComponent {
           attending: null,
           companion: '',
           needsBus: null,
-          busSchedule: null,
+          busSchedule: '',
           allergies: '',
           songRequest: '',
           comments: '',

@@ -1,28 +1,45 @@
 import { Component } from '@angular/core';
 import { CountdownComponent } from '../countdown/countdown.component';
+import { LanguageService } from '../../services/language.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-welcome',
   standalone: true,
-  imports: [CountdownComponent],
+  imports: [CountdownComponent, CommonModule],
   template: `
     <section class="image">
       <img src="blanco-y-negro.jpg" alt="Maria & Alfonso" />
       <div class="image-text">
         <h1>Maria & Alfonso</h1>
-        <h4>4 · OCTUBRE · 2025</h4>
+        <h4>4 · OCTOBER · 2025</h4>
       </div>
     </section>
 
     <section class="welcome">
-      <h1>¡Bienvenidos a nuestra boda!</h1>
+      <h1>
+        {{
+          currentLang === 'es'
+            ? '¡Bienvenidos a nuestra boda!'
+            : 'Welcome to our wedding!'
+        }}
+      </h1>
       <div class="welcome-content">
         <p>
-          Estamos deseando compartir con vosotros este dia que esperamos sea muy
-          especial.
+          {{
+            currentLang === 'es'
+              ? 'Estamos deseando compartir con vosotros este dia que esperamos sea muy especial.'
+              : 'We are looking forward to sharing this very special day with you.'
+          }}
         </p>
 
-        <p>¡Te esperamos!</p>
+        <p>
+          {{
+            currentLang === 'es'
+              ? '¡Te esperamos!'
+              : "We can't wait to see you!"
+          }}
+        </p>
       </div>
     </section>
 
@@ -134,4 +151,12 @@ import { CountdownComponent } from '../countdown/countdown.component';
 
   `,
 })
-export class WelcomeComponent {}
+export class WelcomeComponent {
+  currentLang: string = 'es';
+
+  constructor(private languageService: LanguageService) {
+    this.languageService.currentLang$.subscribe((lang) => {
+      this.currentLang = lang;
+    });
+  }
+}

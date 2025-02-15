@@ -1,27 +1,28 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-countdown',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   template: `
     <div class="countdown">
       <div class="countdown-item">
         <span class="number">{{ days | number : '2.0' }}</span>
-        <span class="label">días</span>
+        <span class="label">{{ 'countdown.days' | translate }}</span>
       </div>
       <div class="countdown-item">
         <span class="number">{{ hours | number : '2.0' }}</span>
-        <span class="label">horas</span>
+        <span class="label">{{ 'countdown.hours' | translate }}</span>
       </div>
       <div class="countdown-item">
         <span class="number">{{ minutes | number : '2.0' }}</span>
-        <span class="label">minutos</span>
+        <span class="label">{{ 'countdown.minutes' | translate }}</span>
       </div>
       <div class="countdown-item">
         <span class="number">{{ seconds | number : '2.0' }}</span>
-        <span class="label">segundos</span>
+        <span class="label">{{ 'countdown.seconds' | translate }}</span>
       </div>
     </div>
   `,

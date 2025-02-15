@@ -1,19 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-dress-code',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   template: `
     <section class="dress-code-section">
-      <h2>Dresscode</h2>
+      <h2>{{ 'dresscode.title' | translate }}</h2>
       <div class="dress-code-content">
-        <p>
-          El dresscode es formal, Alfonso y los testigos irán de chaqué. Aquí te
-          dejamos unos ejemplos de bodas de tarde, teniendo en cuenta el tiempo
-          que suele hacer en estas fechas.
-        </p>
+        <p>{{ 'dresscode.description' | translate }}</p>
         <div class="inspiration-links">
           <a
             href="https://pin.it/6ZDOi38wp"
@@ -21,7 +18,7 @@ import { CommonModule } from '@angular/common';
             rel="noopener noreferrer"
             class="inspiration-button"
           >
-            <span>Inspiración para invitados</span>
+            <span>{{ 'dresscode.men' | translate }}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -39,7 +36,7 @@ import { CommonModule } from '@angular/common';
             rel="noopener noreferrer"
             class="inspiration-button"
           >
-            <span>Inspiración para invitadas</span>
+            <span>{{ 'dresscode.women' | translate }}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -54,7 +51,9 @@ import { CommonModule } from '@angular/common';
         </div>
       </div>
       <div class="contact-info">
-        <p class="contact-header">¿Alguna duda? Escríbenos.</p>
+        <p class="contact-header">
+          {{ 'dresscode.contact.title' | translate }}
+        </p>
         <div class="contact-details">
           <div class="contact-person">
             <p class="name">María</p>

@@ -1,20 +1,18 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-location',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   template: `
     <section class="location-container">
       <div class="location-content">
-        <h1>Cómo llegar</h1>
+        <h1>{{ 'location.title' | translate }}</h1>
 
         <div class="text-content">
-          <h2>
-            Tanto la ceremonia como la posterior celebracion tendran lugar en el
-            Castillo de Batres.
-          </h2>
+          <h2>{{ 'location.description' | translate }}</h2>
         </div>
 
         <div class="image-container">
@@ -31,7 +29,7 @@ import { CommonModule } from '@angular/common';
             target="_blank"
             class="maps-button"
           >
-            Ver en Google Maps
+            {{ 'location.maps' | translate }}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -45,42 +43,54 @@ import { CommonModule } from '@angular/common';
           </a>
 
           <div class="transport-section">
-            <h2>Opciones de transporte</h2>
+            <h2>{{ 'location.transport.title' | translate }}</h2>
 
             <div class="transport-options">
               <div class="transport-option">
-                <h3>Coche</h3>
-                <p>
-                  Puedes ir en tu propio vehículo, hay un parking para 60 coches
-                  por lo que no habrá problema de aparcamiento.
-                </p>
+                <h3>{{ 'location.transport.car.title' | translate }}</h3>
+                <p>{{ 'location.transport.car.description' | translate }}</p>
               </div>
 
               <div class="transport-option">
-                <h3>Bus</h3>
-                <p>
-                  Ponemos un servicio de autobús para trasladar a todos los
-                  invitados.
-                </p>
+                <h3>{{ 'location.transport.bus.title' | translate }}</h3>
+                <p>{{ 'location.transport.bus.description' | translate }}</p>
                 <div class="bus-schedule">
                   <div class="schedule-item">
-                    <span class="time">Ida: 16:30</span>
-                    <span class="location">Salida de Atocha</span>
+                    <span class="time"
+                      >{{ 'location.transport.bus.departure' | translate }}:
+                      16:30</span
+                    >
+                    <span class="location">{{
+                      'location.transport.bus.from' | translate
+                    }}</span>
                   </div>
                   <div class="schedule-item">
-                    <span class="time">Vuelta: 00:00*</span>
-                    <span class="location">Destino Atocha</span>
-                    <span class="note">*Si hay suficiente demanda</span>
+                    <span class="time"
+                      >{{ 'location.transport.bus.return' | translate }}:
+                      00:00*</span
+                    >
+                    <span class="location">{{
+                      'location.transport.bus.to' | translate
+                    }}</span>
+                    <span class="note">{{
+                      'location.transport.bus.demand' | translate
+                    }}</span>
                   </div>
                   <div class="schedule-item">
-                    <span class="time">Vuelta: 3:00</span>
-                    <span class="location">Destino Atocha</span>
-                    <span class="note">Este es fijo</span>
+                    <span class="time"
+                      >{{ 'location.transport.bus.return' | translate }}:
+                      3:00</span
+                    >
+                    <span class="location">{{
+                      'location.transport.bus.to' | translate
+                    }}</span>
+                    <span class="note">{{
+                      'location.transport.bus.confirmed' | translate
+                    }}</span>
                   </div>
                 </div>
                 <p class="important-note">
-                  Si vas a coger la opción de bus, es muy importante que nos lo
-                  hagas saber en el formulario RSVP
+                  {{ 'location.transport.bus.note' | translate }}
                 </p>
               </div>
             </div>
