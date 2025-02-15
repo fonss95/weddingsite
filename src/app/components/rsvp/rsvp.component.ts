@@ -127,6 +127,33 @@ import { HttpClientModule } from '@angular/common/http';
           />
         </div>
 
+        <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
+          <label for="songRequest"
+            >¿Qué canción que te hace levantarte a bailar y quieres compartir
+            con nosotros?</label
+          >
+          <input
+            type="text"
+            id="songRequest"
+            [(ngModel)]="formData.songRequest"
+            name="songRequest"
+            placeholder="Artista - Nombre de la canción"
+          />
+        </div>
+
+        <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
+          <label for="comments"
+            >Si quieres dejarnos un mensaje para nuestro día especial puedes
+            hacerlo aquí.</label
+          >
+          <textarea
+            id="comments"
+            [(ngModel)]="formData.comments"
+            name="comments"
+            rows="3"
+          ></textarea>
+        </div>
+
         <button type="submit" [@fadeSlide] [disabled]="!isFormValid()">
           Enviar
         </button>
@@ -155,6 +182,9 @@ import { HttpClientModule } from '@angular/common/http';
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
     }
 
     .form-group {
@@ -174,7 +204,7 @@ import { HttpClientModule } from '@angular/common/http';
       border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 4px;
       font-size: 1rem;
-      background: color-mix(in srgb, var(--background-color) 85%, black);
+      background: color-mix(in srgb, var(--background-color) 95%, black);
       transition: all 0.3s ease;
       color: var(--primary-text-color);
     }
@@ -184,7 +214,7 @@ import { HttpClientModule } from '@angular/common/http';
       outline: none;
       border-color: var(--primary-text-color);
       box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
-      background: color-mix(in srgb, var(--background-color) 90%, black);
+      background: color-mix(in srgb, var(--background-color) 98%, black);
     }
 
     .radio-group {
@@ -310,6 +340,8 @@ export class RsvpComponent {
     needsBus: null as boolean | null,
     busSchedule: null as 'first' | 'last' | null,
     allergies: '',
+    songRequest: '',
+    comments: '',
   };
 
   constructor(private http: HttpClient) {}
@@ -334,6 +366,8 @@ export class RsvpComponent {
         bus_needed: { S: this.formData.needsBus ? 'Yes' : 'No' },
         bus_schedule: { S: this.formData.busSchedule },
         allergies: { S: this.formData.allergies },
+        song_request: { S: this.formData.songRequest },
+        comments: { S: this.formData.comments },
       },
     };
 
@@ -351,6 +385,8 @@ export class RsvpComponent {
           needsBus: null,
           busSchedule: null,
           allergies: '',
+          songRequest: '',
+          comments: '',
         };
       },
       error: (error) => {
