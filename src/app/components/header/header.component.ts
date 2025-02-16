@@ -122,6 +122,7 @@ import { LanguageService } from '../../services/language.service';
       font-weight: bold;
     }
 
+
     .nav-links a.active::after {
       content: '';
       position: absolute;
