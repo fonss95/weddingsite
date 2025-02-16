@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
-import { LanguageService } from '../../services/language.service';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-rsvp',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  providers: [TranslatePipe],
+  imports: [CommonModule, FormsModule, HttpClientModule, TranslatePipe],
   animations: [
     trigger('fadeSlide', [
       transition(':enter', [
@@ -23,21 +24,13 @@ import { LanguageService } from '../../services/language.service';
   ],
   template: `
     <section class="rsvp-section">
-      <h1>{{ currentLang === 'es' ? 'Confirma tu asistencia' : 'RSVP' }}</h1>
+      <h1>{{ 'rsvp.title' | translate }}</h1>
       <div class="intro-text">
-        <p>
-          {{
-            currentLang === 'es'
-              ? 'Hemos preparado este formulario para que nos ayudéis con la organización del día, y si tenéis alguna duda, podéis escribirnos a cualquiera de nosotros sin problema.'
-              : 'We have prepared this form to help us with the organization of the day. If you have any questions, please feel free to contact either of us.'
-          }}
-        </p>
+        <p>{{ 'rsvp.intro' | translate }}</p>
       </div>
       <form class="rsvp-form" #rsvpForm="ngForm" (submit)="onSubmit($event)">
         <div class="form-group" [@fadeSlide]>
-          <label for="name">{{
-            currentLang === 'es' ? 'Nombre y apellidos' : 'Full name'
-          }}</label>
+          <label for="name">{{ 'rsvp.fullName' | translate }}</label>
           <input
             type="text"
             id="name"
@@ -49,11 +42,7 @@ import { LanguageService } from '../../services/language.service';
         </div>
 
         <div class="form-group" [@fadeSlide]>
-          <label>{{
-            currentLang === 'es'
-              ? '¿Vas a venir a la boda?'
-              : 'Will you attend the wedding?'
-          }}</label>
+          <label>{{ 'rsvp.attending.question' | translate }}</label>
           <div class="button-group">
             <button
               type="button"
@@ -61,32 +50,20 @@ import { LanguageService } from '../../services/language.service';
               (click)="formData.attending = true"
               required
             >
-              {{
-                currentLang === 'es'
-                  ? '¡Sí, allí estaré!'
-                  : 'Yes, I will be there!'
-              }}
+              {{ 'rsvp.attending.yes' | translate }}
             </button>
             <button
               type="button"
               [class.active]="formData.attending === false"
               (click)="formData.attending = false"
             >
-              {{
-                currentLang === 'es'
-                  ? 'No podré asistir'
-                  : 'Sorry, I cannot attend'
-              }}
+              {{ 'rsvp.attending.no' | translate }}
             </button>
           </div>
         </div>
 
         <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
-          <label for="companion">{{
-            currentLang === 'es'
-              ? 'Nombre y apellidos de tu acompañante'
-              : "Your companion's full name"
-          }}</label>
+          <label for="companion">{{ 'rsvp.companion' | translate }}</label>
           <input
             type="text"
             id="companion"
@@ -96,73 +73,47 @@ import { LanguageService } from '../../services/language.service';
         </div>
 
         <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
-          <label>{{
-            currentLang === 'es'
-              ? '¿Vas a utilizar el servicio de autobuses?'
-              : 'Will you use the bus service?'
-          }}</label>
+          <label>{{ 'rsvp.bus.question' | translate }}</label>
           <div class="button-group">
             <button
               type="button"
               [class.active]="formData.needsBus === true"
               (click)="formData.needsBus = true"
             >
-              {{
-                currentLang === 'es' ? 'Sí, lo utilizaré' : 'Yes, I will use it'
-              }}
+              {{ 'rsvp.bus.yes' | translate }}
             </button>
             <button
               type="button"
               [class.active]="formData.needsBus === false"
               (click)="formData.needsBus = false"
             >
-              {{
-                currentLang === 'es'
-                  ? 'No, iré por mi cuenta'
-                  : 'No, I will go on my own'
-              }}
+              {{ 'rsvp.bus.no' | translate }}
             </button>
           </div>
         </div>
 
         <div *ngIf="formData.needsBus" class="form-group" [@fadeSlide]>
-          <label>{{
-            currentLang === 'es'
-              ? '¿Que horario de autobus prefieres?'
-              : 'Which bus schedule do you prefer?'
-          }}</label>
+          <label>{{ 'rsvp.bus.schedule.question' | translate }}</label>
           <div class="button-group">
             <button
               type="button"
               [class.active]="formData.busSchedule === 'first'"
               (click)="formData.busSchedule = 'first'"
             >
-              {{
-                currentLang === 'es'
-                  ? 'Me iré despúes de unos bailes (00:00)'
-                  : 'I will leave after some dancing (00:00)'
-              }}
+              {{ 'rsvp.bus.schedule.early' | translate }}
             </button>
             <button
               type="button"
               [class.active]="formData.busSchedule === 'last'"
               (click)="formData.busSchedule = 'last'"
             >
-              {{
-                currentLang === 'es'
-                  ? 'Me quedaré hasta el final (3:00)'
-                  : 'I will stay until the end (3:00)'
-              }}
+              {{ 'rsvp.bus.schedule.late' | translate }}
             </button>
           </div>
         </div>
 
         <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
-          <label for="allergies">{{
-            currentLang === 'es'
-              ? '¿Tienes tú y/o tu acompañante alguna alergia o restricción alimentaria?'
-              : 'Do you or your companion have any food allergies or dietary restrictions?'
-          }}</label>
+          <label for="allergies">{{ 'rsvp.allergies' | translate }}</label>
           <input
             type="text"
             id="allergies"
@@ -172,30 +123,17 @@ import { LanguageService } from '../../services/language.service';
         </div>
 
         <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
-          <label for="songRequest">{{
-            currentLang === 'es'
-              ? '¿Qué canción que te hace levantarte a bailar y quieres compartir con nosotros?'
-              : 'What song makes you want to dance and would you like to share with us?'
-          }}</label>
+          <label for="songRequest">{{ 'rsvp.song' | translate }}</label>
           <input
             type="text"
             id="songRequest"
             [(ngModel)]="formData.songRequest"
             name="songRequest"
-            [placeholder]="
-              currentLang === 'es'
-                ? 'Artista - Nombre de la canción'
-                : 'Artist - Song name'
-            "
           />
         </div>
 
         <div *ngIf="formData.attending" class="form-group" [@fadeSlide]>
-          <label for="comments">{{
-            currentLang === 'es'
-              ? 'Si quieres dejarnos un mensaje para nuestro día especial puedes hacerlo aquí.'
-              : 'If you would like to leave us a message for our special day, you can do so here.'
-          }}</label>
+          <label for="comments">{{ 'rsvp.comments' | translate }}</label>
           <textarea
             id="comments"
             [(ngModel)]="formData.comments"
@@ -205,7 +143,7 @@ import { LanguageService } from '../../services/language.service';
         </div>
 
         <button type="submit" [@fadeSlide] [disabled]="!isFormValid()">
-          {{ currentLang === 'es' ? 'Enviar' : 'Submit' }}
+          {{ 'rsvp.submit' | translate }}
         </button>
       </form>
     </section>
@@ -383,7 +321,6 @@ import { LanguageService } from '../../services/language.service';
   `,
 })
 export class RsvpComponent {
-  currentLang: string = 'es';
   formData = {
     name: '',
     attending: null as boolean | null,
@@ -395,14 +332,7 @@ export class RsvpComponent {
     comments: '',
   };
 
-  constructor(
-    private http: HttpClient,
-    private languageService: LanguageService
-  ) {
-    this.languageService.currentLang$.subscribe((lang) => {
-      this.currentLang = lang;
-    });
-  }
+  constructor(private http: HttpClient, private translatePipe: TranslatePipe) {}
 
   onSubmit(event: Event) {
     event.preventDefault();
@@ -432,8 +362,7 @@ export class RsvpComponent {
     this.http.post(apiUrl, body, { headers }).subscribe({
       next: (response) => {
         console.log('RSVP submitted successfully:', response);
-        // You might want to show a success message to the user
-        alert('¡Gracias! Tu respuesta ha sido registrada.');
+        alert(this.translatePipe.transform('rsvp.success'));
 
         // Reset the form
         this.formData = {
@@ -449,9 +378,7 @@ export class RsvpComponent {
       },
       error: (error) => {
         console.error('Error submitting RSVP:', error);
-        alert(
-          'Lo sentimos, ha habido un error. Por favor, inténtalo de nuevo más tarde.'
-        );
+        alert(this.translatePipe.transform('rsvp.error'));
       },
     });
   }

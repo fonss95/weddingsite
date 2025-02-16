@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-events',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   template: `
     <section class="events-section">
-      <h2>Eventos</h2>
+      <h2>{{ 'events.title' | translate }}</h2>
       <img
-        src="/events-v2.png"
+        [src]="'events.picture' | translate"
         alt="Wedding Events Timeline"
         class="events-image"
       />

@@ -2,44 +2,26 @@ import { Component } from '@angular/core';
 import { CountdownComponent } from '../countdown/countdown.component';
 import { LanguageService } from '../../services/language.service';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-welcome',
   standalone: true,
-  imports: [CountdownComponent, CommonModule],
+  imports: [CountdownComponent, CommonModule, TranslatePipe],
   template: `
     <section class="image">
       <img src="blanco-y-negro.jpg" alt="Maria & Alfonso" />
       <div class="image-text">
         <h1>Maria & Alfonso</h1>
-        <h4>4 · OCTOBER · 2025</h4>
+        <h4>{{ 'welcome.date' | translate }}</h4>
       </div>
     </section>
 
     <section class="welcome">
-      <h1>
-        {{
-          currentLang === 'es'
-            ? '¡Bienvenidos a nuestra boda!'
-            : 'Welcome to our wedding!'
-        }}
-      </h1>
+      <h1>{{ 'welcome.title' | translate }}</h1>
       <div class="welcome-content">
-        <p>
-          {{
-            currentLang === 'es'
-              ? 'Estamos deseando compartir con vosotros este dia que esperamos sea muy especial.'
-              : 'We are looking forward to sharing this very special day with you.'
-          }}
-        </p>
-
-        <p>
-          {{
-            currentLang === 'es'
-              ? '¡Te esperamos!'
-              : "We can't wait to see you!"
-          }}
-        </p>
+        <p>{{ 'welcome.description' | translate }}</p>
+        <p>{{ 'welcome.cta' | translate }}</p>
       </div>
     </section>
 
@@ -152,11 +134,7 @@ import { CommonModule } from '@angular/common';
   `,
 })
 export class WelcomeComponent {
-  currentLang: string = 'es';
-
   constructor(private languageService: LanguageService) {
-    this.languageService.currentLang$.subscribe((lang) => {
-      this.currentLang = lang;
-    });
+    // We can remove the language subscription since we're using the translation pipe now
   }
 }

@@ -36,6 +36,13 @@ import { LanguageService } from '../../services/language.service';
               [class.active]="activeSection === 'events'"
               >{{ currentLang === 'es' ? 'Eventos' : 'Events' }}</a
             >
+            <a
+              (click)="scrollToSection('registry')"
+              [class.active]="activeSection === 'registry'"
+              >{{
+                currentLang === 'es' ? 'Lista de bodas' : 'Wedding Registry'
+              }}</a
+            >
           </div>
           <div class="language-selector">
             <button

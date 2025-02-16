@@ -6,7 +6,7 @@ import { LocationComponent } from './components/location/location.component';
 import { EventsComponent } from './components/events/events.component';
 import { DressCodeComponent } from './components/dress-code/dress-code.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { RegistryComponent } from './components/registry/registry.component';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +19,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     EventsComponent,
     DressCodeComponent,
     FooterComponent,
+    RegistryComponent,
   ],
   template: `
     <app-header />
@@ -41,6 +42,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
       <section id="dress-code" class="dress-code-section">
         <app-dress-code />
+      </section>
+
+      <section id="registry" class="registry-section">
+        <app-registry />
       </section>
     </main>
     <app-footer />
@@ -65,6 +70,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     }
 
     .dress-code-section {
+      min-height: 30vh;
+    }
+
+    .registry-section {
       min-height: 50vh;
     }
 

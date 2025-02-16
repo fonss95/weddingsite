@@ -281,10 +281,6 @@ import { TranslatePipe } from '../../pipes/translate.pipe';
       .text-content {
         padding: 0 1rem;
       }
-
-      .transport-option {
-        min-width: 100%;
-      }
     }
   `,
 })

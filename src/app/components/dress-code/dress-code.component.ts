@@ -50,24 +50,6 @@ import { TranslatePipe } from '../../pipes/translate.pipe';
           </a>
         </div>
       </div>
-      <div class="contact-info">
-        <p class="contact-header">
-          {{ 'dresscode.contact.title' | translate }}
-        </p>
-        <div class="contact-details">
-          <div class="contact-person">
-            <p class="name">María</p>
-            <a href="tel:+34617674229" class="phone-number">+34 617 674 229</a>
-          </div>
-          <div class="contact-person">
-            <p class="name">Alfonso</p>
-            <a href="tel:+34682238570" class="phone-number">+34 682 238 570</a>
-          </div>
-        </div>
-      </div>
-      <div class="icon-container">
-        <img src="favicon.png" alt="Wedding icon" class="dress-code-icon" />
-      </div>
     </section>
   `,
   styles: `
@@ -150,77 +132,7 @@ import { TranslatePipe } from '../../pipes/translate.pipe';
       .inspiration-button {
         justify-content: center;
       }
-    }
 
-    .contact-info {
-      margin-top: 3rem;
-      text-align: center;
-    }
-
-    .contact-header {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      font-weight: 500;
-    }
-
-    .contact-details {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-    }
-
-    .contact-person {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .name {
-      margin: 0;
-      font-size: 1.2rem;
-      font-weight: 500;
-    }
-
-    .phone-number {
-      color: var(--primary-text-color);
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: color 0.3s ease;
-    }
-
-    .phone-number:hover {
-      color: var(--accent-color);
-    }
-
-    @media (max-width: 768px) {
-      .contact-details {
-        gap: 2rem;
-      }
-
-      .name {
-        font-size: 1.1rem;
-      }
-
-      .phone-number {
-        font-size: 1rem;
-      }
-    }
-
-    .icon-container {
-      display: flex;
-      justify-content: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .dress-code-icon {
-      width: 7rem;
-      height: 7rem;
-      object-fit: contain;
-    }
-
-    @media (max-width: 768px) {
       .dress-code-icon {
         width: 5rem;
         height: 5rem;
