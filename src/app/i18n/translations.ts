@@ -182,7 +182,7 @@ export const translations: TranslationsType = {
     // Location
     'location.title': 'How to get there',
     'location.description':
-      'Both the ceremony and the celebration will take place at Castillo de Batres.',
+      'Both ceremony and reception will take place at Castillo de Batres.',
     'location.maps': 'View on Google Maps',
     'location.transport.title': 'Transportation options',
     'location.transport.car.title': 'Car',
@@ -198,7 +198,7 @@ export const translations: TranslationsType = {
     'location.transport.bus.demand': '*Subject to demand',
     'location.transport.bus.confirmed': 'This service is confirmed',
     'location.transport.bus.note':
-      'If you plan to use the shuttle service, it is very important to let us know in the RSVP form so we can plan accordingly.',
+      'If you plan to use the bus service, it is very important to let us know in the RSVP form so we can plan accordingly.',
 
     // Dress Code
     'dresscode.title': 'Dresscode',
