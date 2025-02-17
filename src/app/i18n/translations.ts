@@ -187,7 +187,7 @@ export const translations: TranslationsType = {
     'location.transport.title': 'Transportation options',
     'location.transport.car.title': 'Car',
     'location.transport.car.description':
-      "You are welcome to drive, the venue has parking space for 60 vehicles, so finding parking won't be an .",
+      "You are welcome to drive, the venue has parking space for 60 vehicles, so finding parking won't be a problem.",
     'location.transport.bus.title': 'Bus',
     'location.transport.bus.description':
       'We provide a bus service to transport all guests.',
