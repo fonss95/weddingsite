@@ -135,8 +135,7 @@ export const translations: TranslationsType = {
 
     // RSVP
     'rsvp.title': 'Confirma tu asistencia',
-    'rsvp.intro':
-      'Hemos preparado este formulario para que nos ayudéis con la organización del día, y si tenéis alguna duda, podéis escribirnos a cualquiera de nosotros sin problema.',
+    'rsvp.intro': `Hemos preparado un breve formulario de asistencia para ayudarnos con la organización de nuestra boda.  Solo es necesario rellenarlo una vez por invitación. Al seleccionar 'Sí, allí estaré', tendréis la opción de añadir el nombre de vuestro acompañante según lo indicado en la invitación. Si tenéis cualquier duda o consulta, no dudéis en contactar con nosotros.`,
     'rsvp.fullName': 'Nombre y apellidos',
     'rsvp.attending.question': '¿Vas a venir a la boda?',
     'rsvp.attending.yes': '¡Sí, allí estaré!',
@@ -227,7 +226,7 @@ export const translations: TranslationsType = {
     // RSVP
     'rsvp.title': 'RSVP',
     'rsvp.intro':
-      "We have created this form to help us organize the day. If you have any questions, don't hesitate to reach out to either of us.",
+      "We have prepared a 1-minute form to help us with the organization of the wedding. It only needs to be completed once per invitation (considering the individuals listed on your invitation envelope). When selecting 'Yes, I will attend', you will have the option to add the name of your +1. If you have any questions or concerns, please don't hesitate to contact either of us.",
     'rsvp.fullName': 'Full name',
     'rsvp.attending.question': 'Will you attend the wedding?',
     'rsvp.attending.yes': 'Yes, I will be there!',
