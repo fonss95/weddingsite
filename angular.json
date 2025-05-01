@@ -53,7 +53,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/"
+              "baseHref": "https://mariayalfon.es/"
             },
             "development": {
               "optimization": false,
@@ -102,7 +102,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/",
+            "baseHref": "https://mariayalfon.es/",
             "cname": "mariayalfon.es",
             "noBuild": false,
             "noSilent": true

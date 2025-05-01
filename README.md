@@ -54,7 +54,7 @@ ng generate service services/new-service
 ng generate pipe pipes/new-pipe
 ```
 
-## Deployment to GitHub Pages
+## Deployment to GitHub Pages with Custom Domain
 
 1. Install the gh-pages package if not already installed:
 
@@ -62,30 +62,32 @@ ng generate pipe pipes/new-pipe
 npm install -g angular-cli-ghpages
 ```
 
-2. Create a production build with the correct base href:
+2. Configure your custom domain:
 
-```bash
-ng build --configuration production --base-href=https://fonss95.github.io/weddingsite/"
-```
+   - Create a `CNAME` file in the `public` directory with your domain name (e.g., `mariayalfon.es`)
+   - Add the CNAME file to your repository
+   - Configure your DNS settings to point to GitHub Pages
+   - Enable HTTPS in GitHub Pages settings
 
 3. Deploy to GitHub Pages:
 
 ```bash
-npx angular-cli-ghpages --dir=dist/weddingsite/browser
+ng deploy --base-href=https://mariayalfon.es/
 ```
 
-Note: Make sure to replace `[username]` with your GitHub username and `[repository-name]` with your repository name in the base-href URL.
+Note: The base href is automatically configured in the `angular.json` file for production builds. Make sure your custom domain is properly set up in GitHub Pages settings before deploying.
 
 ## Project Structure
 
 - `src/app/components/` - Website components (RSVP, dress code, location, etc.)
-- `public/` - Static assets (images, fonts, etc.)
+- `public/` - Static assets (images, fonts, etc.) and CNAME file
 
 ## Additional Resources
 
 - [Angular Documentation](https://angular.dev)
 - [Angular CLI Documentation](https://angular.dev/tools/cli)
 - [GitHub Pages Documentation](https://pages.github.com/)
+- [GitHub Pages Custom Domain Setup](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)
 
 ## License
 
