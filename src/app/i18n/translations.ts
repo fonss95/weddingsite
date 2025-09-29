@@ -23,8 +23,6 @@ type TranslationKeys =
   | 'location.transport.bus.return'
   | 'location.transport.bus.from'
   | 'location.transport.bus.to'
-  | 'location.transport.bus.demand'
-  | 'location.transport.bus.confirmed'
   | 'location.transport.bus.note'
   | 'dresscode.title'
   | 'dresscode.description'
@@ -102,10 +100,8 @@ export const translations: TranslationsType = {
       'Ponemos un servicio de autobús para trasladar a todos los invitados.',
     'location.transport.bus.departure': 'Ida',
     'location.transport.bus.return': 'Vuelta',
-    'location.transport.bus.from': 'Salida de Atocha',
-    'location.transport.bus.to': 'Destino Atocha',
-    'location.transport.bus.demand': '*Si hay suficiente demanda',
-    'location.transport.bus.confirmed': 'Este es fijo',
+    'location.transport.bus.from': 'Salida del Retiro - Puerta de Hernani',
+    'location.transport.bus.to': 'Destino Retiro - Puerta de Hernani',
     'location.transport.bus.note':
       'Si vas a coger la opción de bus, es muy importante que nos lo hagas saber en el formulario de asistencia.',
 
@@ -126,10 +122,10 @@ export const translations: TranslationsType = {
     'registry.description':
       'Compartir con vosotros nuestro día especial es el mejor regalo, pero si además queréis contribuir de alguna otra forma, aquí os dejamos los detalles de nuestra cuenta conjunta:',
     'registry.account.title': 'Detalles de la cuenta',
-    'registry.account.iban': 'IBAN: DE54 1203 0000 1078 120696',
+    'registry.account.iban': 'IBAN: ES40 0128 0051 2001 0011 1041',
     'registry.account.beneficiaries': 'Beneficiarios: Maria y Alfonso',
     'registry.bizum':
-      'Si os da problemas la cuenta alemana podéis hacernos Bizum a cualquiera de nosotros',
+      'Si os da problemas la cuenta de banco podéis hacernos Bizum a cualquiera de nosotros',
     'registry.contact.title': 'Alguna duda? Escríbenos!',
     'registry.contact.phone': 'Tel:',
 
@@ -192,10 +188,8 @@ export const translations: TranslationsType = {
       'We provide a bus service to transport all guests.',
     'location.transport.bus.departure': 'Departure',
     'location.transport.bus.return': 'Return',
-    'location.transport.bus.from': 'Pickup from Atocha',
-    'location.transport.bus.to': 'Drop-off at Atocha',
-    'location.transport.bus.demand': '*Subject to demand',
-    'location.transport.bus.confirmed': 'This service is confirmed',
+    'location.transport.bus.from': 'Pickup from Retiro - Puerta de Hernani',
+    'location.transport.bus.to': 'Drop-off at Retiro - Puerta de Hernani',
     'location.transport.bus.note':
       'If you plan to use the bus service, it is very important to let us know in the RSVP form so we can plan accordingly.',
 
@@ -216,10 +210,10 @@ export const translations: TranslationsType = {
     'registry.description':
       'Sharing our special day with you is the best gift, but if you would also like to contribute in another way, here are our bank account details:',
     'registry.account.title': 'Account Details',
-    'registry.account.iban': 'IBAN: DE54 1203 0000 1078 120696',
+    'registry.account.iban': 'IBAN: ES40 0128 0051 2001 0011 1041',
     'registry.account.beneficiaries': 'Beneficiaries: Maria and Alfonso',
     'registry.bizum':
-      'If you have any issues with the German account, you can send us a Bizum to either of us',
+      'If you have any issues with the Bank account, you can send us a Bizum to either of us',
     'registry.contact.title': 'Any questions? Contact us!',
     'registry.contact.phone': 'Phone:',
 

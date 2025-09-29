@@ -60,33 +60,24 @@ import { TranslatePipe } from '../../pipes/translate.pipe';
                       >{{ 'location.transport.bus.departure' | translate }}:
                       16:30</span
                     >
-                    <span class="location">{{
-                      'location.transport.bus.from' | translate
-                    }}</span>
+                    <a
+                      class="location"
+                      href="https://maps.app.goo.gl/bcQCGj5Xbq2ezQxX9"
+                      target="_blank"
+                      >{{ 'location.transport.bus.from' | translate }}</a
+                    >
                   </div>
                   <div class="schedule-item">
                     <span class="time"
                       >{{ 'location.transport.bus.return' | translate }}:
-                      00:00*</span
+                      2:45</span
                     >
-                    <span class="location">{{
-                      'location.transport.bus.to' | translate
-                    }}</span>
-                    <span class="note">{{
-                      'location.transport.bus.demand' | translate
-                    }}</span>
-                  </div>
-                  <div class="schedule-item">
-                    <span class="time"
-                      >{{ 'location.transport.bus.return' | translate }}:
-                      3:00</span
+                    <a
+                      class="location"
+                      href="https://maps.app.goo.gl/bcQCGj5Xbq2ezQxX9"
+                      target="_blank"
+                      >{{ 'location.transport.bus.to' | translate }}</a
                     >
-                    <span class="location">{{
-                      'location.transport.bus.to' | translate
-                    }}</span>
-                    <span class="note">{{
-                      'location.transport.bus.confirmed' | translate
-                    }}</span>
                   </div>
                 </div>
                 <p class="important-note">
@@ -254,6 +245,7 @@ import { TranslatePipe } from '../../pipes/translate.pipe';
 
     .location {
       font-size: 0.9rem;
+      color: var(--primary-text-color);
     }
 
     .note {
